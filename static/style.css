@@ -164,7 +164,7 @@ body {
     width: 100%;
     height: 80vh;
     /* يأخذ 80% من ارتفاع شاشة المستخدم */
-    margin-top: 70px;
+    /* margin-top: 70px; */
     /* مسافة لحماية السلايدر من الاختفاء خلف الـ Navbar المثبتة */
     position: relative;
     overflow: hidden;
@@ -276,7 +276,7 @@ body {
 @media (max-width: 768px) {
     .carousel-container {
         height: 60vh;
-        margin-top: 130px;
+        /* margin-top: 130px; */
         /* زيادة المسافة لأن الهيدر في الموبايل يأخذ مساحة أكبر */
     }
 
