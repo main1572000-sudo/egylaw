@@ -948,3 +948,50 @@ p strong {
     padding: 10px;
     border-right: 4px solid #f0ad4e;
 }
+
+/* التجاوب مع الهواتف الذكية (الكود المعدل) */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 50vh;
+        /* تقليل الارتفاع قليلاً ليناسب شاشات الهواتف */
+        margin-top: 70px;
+        /* إذا كان الهيدر متجاوب، يفضل الحفاظ عليه أو ضبطه بدقة دون مبالغة */
+        background-color: transparent;
+        /* جعل خلفية الحاوية شفافة لمنع ظهور المربع الأسود */
+    }
+
+    .carousel-slide img {
+        filter: brightness(50%);
+        /* تخفيف التعتيم قليلاً على الموبايل لتتضح الصورة الخلفية */
+    }
+
+    .carousel-caption {
+        right: 5%;
+        left: 5%;
+        width: 90%;
+        /* تحديد عرض واضح للحاوية لمنع تمددها الوهمي */
+        text-align: center;
+        /* تمركز النص في الموبايل لسهولة القراءة */
+
+        /* إجبار الأنيميشن على البقاء في المنتصف دون تداخل مع أبعاد الموبايل */
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .carousel-caption h2 {
+        font-size: 24px;
+        /* تصغير الخط قليلاً ليناسب شاشات الموبايل الصغيرة دون تمدد */
+        margin-bottom: 10px;
+    }
+
+    .carousel-caption p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .carousel-btn {
+        padding: 10px 20px;
+        /* تصغير حجم الزر ليتناسب مع شاشة الهاتف */
+        font-size: 14px;
+    }
+}
