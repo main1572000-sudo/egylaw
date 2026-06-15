@@ -35,9 +35,9 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'egylaw.onrender.com',      # يسمح برابط ريندر الافتراضي
-    'egylaw.site',     # الدومين الخاص بك
-    'www.egylaw.site', # الدومين الخاص بك مع www
+    'egylaw.onrender.com', 
+    'egylaw.site',     
+    'www.egylaw.site',
 ]
 
 # Application definition

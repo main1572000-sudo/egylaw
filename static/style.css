@@ -23,11 +23,12 @@ body {
     background-color: #111111;
     /* لون أسود فاخر */
     padding: 15px 5%;
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
 }
 
 /* تنسيق اللوجو (يسار الـ Navbar حسب طلبك - تم ضبط الاتجاهات برمجياً لتناسب التصميم) */
@@ -784,7 +785,7 @@ p strong {
     max-width: 900px;
     margin: 40px auto;
     margin-top: 5%;
-    padding: 0 20px;
+    padding: 3%;
     font-family: 'Cairo', sans-serif;
 }
 
