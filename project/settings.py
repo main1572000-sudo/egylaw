@@ -32,8 +32,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key-for-dev')
 # القيمة الافتراضية هنا هي 'False'، ويعمل فقط 'True' إذا حددت ذلك بنفسك في جهازك
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'egylaw.onrender.com'] # أضفنا دومين ريندر هنا مسبقاً
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'egylaw.onrender.com',      # يسمح برابط ريندر الافتراضي
+    'egylaw.site',     # الدومين الخاص بك
+    'www.egylaw.site', # الدومين الخاص بك مع www
+]
 
 # Application definition
 
