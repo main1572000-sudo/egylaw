@@ -29,9 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # قراءة السيكرت كي والديباج من ملف البيئة
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key-for-dev')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+# القيمة الافتراضية هنا هي 'False'، ويعمل فقط 'True' إذا حددت ذلك بنفسك في جهازك
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com'] # أضفنا دومين ريندر هنا مسبقاً
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'egylaw.onrender.com'] # أضفنا دومين ريندر هنا مسبقاً
 
 
 # Application definition
