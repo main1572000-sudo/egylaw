@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}معلومات{% endblock title %}
+
+
+{% block main %}
+    {% for x in subject %}
+        <div id="forpages">
+            <h1>{{x.header}}</h1>
+            <P id="lawpage">{{x.content|safe}}</p>
+        </div>
+    {% endfor %}
+{% endblock main %}

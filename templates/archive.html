@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}أرشيف الأخبار{% endblock title %}
+{% block main %}
+<div id="archive-news-section">
+    <h2>أرشيف الأخبار والمقالات</h2>
+
+    <div class="archive-container">
+        {% if page_obj %}
+            <ul class="archive-list">
+                {% for item in page_obj %}
+                    <li class="archive-item">
+                        <a href="{% url 'law' item.id %}" class="archive-link">
+                            <h3 class="archive-title">{{ item.header }}</h3>
+                            <span class="archive-read-more">عرض التفاصيل <i class="fas fa-chevron-left"></i></span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% if page_obj.has_other_pages %}
+                <div class="archive-pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">السابق</a>
+                    {% endif %}
+                    
+                    <span class="current-page">صفحة {{ page_obj.number }} من {{ page_obj.paginator.num_pages }}</span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="page-link">التالي</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% else %}
+            <div class="archive-no-results">
+                <i class="fas fa-folder-open"></i>
+                <p>لا توجد مقالات أو أخبار في الأرشيف حالياً.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock main %}

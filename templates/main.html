@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}الرئيسية{% endblock title %}
+
+{% block main %}
+<!-- بداية الـ Carousel -->
+<div class="carousel-container">
+    <div class="carousel-slider">
+        
+        <!-- الشريحة الأولى -->
+        <div class="carousel-slide active">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1200" alt="الاستشارات القانونية">
+            <div class="carousel-caption">
+                <h2>مكتب egy<span>law</span> للمحاماة</h2>
+                <p>نخبة من المستشارين القانونيين في خدمتكم لتحقيق العدالة وحماية حقوقكم.</p>
+                <a href="https://wa.me/01281379733?text=السلام+عليكم" class="carousel-btn">طلب استشارة الآن</a>
+            </div>
+        </div>
+
+        <!-- الشريحة الثانية -->
+        <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200" alt="قضايا الشركات">
+            <div class="carousel-caption">
+                <h2>حماية استثماراتكم وشركاتكم</h2>
+                <p>نقدم معلومات وحلول قانونية متكاملة للأفراد والشركات وصياغة العقود باحترافية.</p>
+                <a href="{% url 'archive' %}" class="carousel-btn">اكتشف خدماتنا</a>
+            </div>
+        </div>
+
+        <!-- الشريحة الثالثة -->
+        <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1200" alt="النزاعات القضائية">
+            <div class="carousel-caption">
+                <h2>خبرة تمتد لسنوات في المحاكم</h2>
+                <p>نتولى قضاياكم بأعلى معايير النزاهة والسرية لضمان أفضل النتائج القضائية.</p>
+                <a href="https://wa.me/01281379733?text=السلام+عليكم" class="carousel-btn">تواصل معنا</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- نهاية الـ Carousel -->
+{% endblock main %}
+{% block content %}{% endblock content %}

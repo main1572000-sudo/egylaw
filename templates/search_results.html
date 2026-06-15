@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}البحث{% endblock title %}
+{% block main %}
+<div id="search-results-section">
+    <h2>نتائج البحث عن: "<span class="query-highlight">{{ query }}</span>"</h2>
+
+    <div class="results-container">
+        {% if results %}
+            <ul class="results-list">
+                {% for item in results %}
+                    <li class="result-item">
+                        <a href="{% url 'law' item.id %}" class="result-link">
+                            <h3 class="result-title">{{ item.header }}</h3>
+                            <span class="read-more">عرض التفاصيل <i class="fas fa-chevron-left"></i></span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="no-results">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>لم يتم العثور على نتائج تطابق بحثك. تأكد من كتابة الكلمات بشكل صحيح.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock main %}
