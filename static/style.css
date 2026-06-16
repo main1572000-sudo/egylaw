@@ -627,7 +627,7 @@ body {
         position: relative;
         z-index: 2;
         color: #020000;
-        text-align: center;
+        /* text-align: center; */
 
         /* تصميم الصندوق الزجاجي */
         padding: 40px;
@@ -950,3 +950,4 @@ body {
         padding: 10px;
         border-right: 4px solid #f0ad4e;
     }
+}
