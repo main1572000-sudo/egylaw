@@ -14,11 +14,12 @@ class Info(models.Model):
     content = CKEditor5Field('المحتوى', config_name='extends')
     catagory = models.ForeignKey(Catagory,verbose_name='التصنيف', on_delete=models.CASCADE)
     updated_at = models.DateTimeField(auto_now=True)
+    def get_absolute_url(self):
+        return reverse('law', args=[self.id])
     
     def __str__(self):
         return self.header
-def get_absolute_url(self):
-    return reverse('law', args=[self.id])
+
     
     
 # class Product(models.Model):

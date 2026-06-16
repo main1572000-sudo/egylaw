@@ -580,6 +580,7 @@ body {
 }
 
 /* تنسيق الخطوط من جوجل (يفضل إدراج خط Cairo أو Almarai في موقعك) */
+/* تنسيق الخطوط من جوجل */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
 body {
@@ -588,366 +589,372 @@ body {
     /* خلفية مريحة جداً للقراءة */
     direction: rtl;
     /* يدعم اللغة العربية */
+}
 
-    /* --- تنسيق العنوان الرئيسي h1 --- */
-    h1 {
-        color: #1a1a1a;
-        /* أسود غني فخم وليس داكناً حد السواد المطلق */
-        font-size: 2.5rem;
-        /* حجم مناسب ومميز للعناوين الإخبارية */
-        font-weight: 700;
-        line-height: 1.4;
-        margin-bottom: 20px;
-        padding-right: 15px;
-        margin-top: 5%;
-        /* لمسة ذهبية: خط رأسي أيمن يميز العنوان الإخباري */
-        border-right: 5px solid #D4AF37;
-        text-align: right;
-    }
+/* --- تنسيق العنوان الرئيسي h1 --- */
+h1 {
+    color: #1a1a1a;
+    /* أسود غني فخم */
+    font-size: 2.5rem;
+    /* حجم مناسب ومميز للعناوين الإخبارية */
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    padding-right: 15px;
+    margin-top: 5%;
+    border-right: 5px solid #D4AF37;
+    /* خط رأسي أيمن يميز العنوان الإخباري */
+    text-align: right;
+}
 
-    /* تأثير عند تمرير الماوس على العنوان (إذا كان رابطاً) */
-    h1 a:hover {
-        color: #C5A028;
-        /* درجة ذهبي أغمق قليلاً */
-        transition: color 0.3s ease;
-    }
+/* تأثير عند تمرير الماوس على العنوان (إذا كان رابطاً) */
+h1 a:hover {
+    color: #C5A028;
+    /* درجة ذهبي أغمق قليلاً */
+    transition: color 0.3s ease;
+}
 
-    /* --- تنسيق الفقرة النصية p --- */
+/* --- تنسيق الفقرة النصية p وصندوق lawpage --- */
+#lawpage {
+    color: #020000;
+    /* أسود خفيف ومريح جداً للعين */
+    font-size: 1.50rem;
+    /* حجم مثالي للمقالات */
+    line-height: 1.8;
+    /* مسافة بين السطور تمنع تداخل الكلمات */
+    text-align: justify;
+    /* محاذاة النص ليعطي مظهر الصحف */
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* خلفية بيضاء شفافة */
+    backdrop-filter: blur(10px);
+    /* ضبابية للخلفية زجاجي */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* الاستجابة للموبايل لصندوق القراءة */
+@media (max-width: 768px) {
     #lawpage {
-        /* display: flex; */
-        color: #8b2227;
-        /* أسود خفيف ومريح جداً للعين عند القراءة الطويلة */
-        font-size: 1.50rem;
-        /* حجم مثالي للمقالات الإخبارية */
-        line-height: 1.8;
-        /* مسافة بين السطور تمنع تداخل الكلمات */
-        text-align: justify;
-        /* محاذاة النص ليعطي مظهر الصحف الاحترافية */
-        margin-bottom: 15px;
-        position: relative;
-        z-index: 2;
-        color: #020000;
-        /* text-align: center; */
-
-        /* تصميم الصندوق الزجاجي */
-        padding: 40px;
-        border-radius: 15px;
-        background-color: rgba(255, 255, 255, 0.1);
-        /* خلفية بيضاء شفافة جداً */
-
-        /* /* السحر هنا: ضبابية للخلفية التي تقع خلف الصندوق مباشرة */
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-
-        /* إضافة حد خفيف ليعطي تأثير الزجاج */
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        font-size: 1.2rem;
+        /* تقليل حجم الخط قليلاً ليناسب الموبايل */
     }
 
-    /* --- لمسة إضافية: تمييز النصوص بالنكهة الذهبية --- */
-    p ::selection {
-        background: #D4AF37;
-        /* لون التظليل عند تحديد النص */
-        color: #fff;
+    h1 {
+        font-size: 1.8rem;
     }
+}
 
-    /* تنسيق للكلمات المفتاحية داخل المقال التي تريد إبرازها */
-    p strong {
-        color: #C5A028;
-        /* جعل الخط العريض باللون الذهبي */
-        font-weight: 700;
-    }
+/* --- تمييز النصوص بالنكهة الذهبية --- */
+p ::selection {
+    background: #D4AF37;
+    /* لون التظليل عند تحديد النص */
+    color: #fff;
+}
 
+/* تنسيق للكلمات المفتاحية داخل المقال */
+p strong {
+    color: #C5A028;
+    /* جعل الخط العريض باللون الذهبي */
+    font-weight: 700;
+}
+
+#forpages {
+    padding-bottom: 25%;
+    padding-top: 3%;
+    padding-right: 2%;
+    padding-left: 15%;
+}
+
+@media (max-width: 768px) {
     #forpages {
-
-        padding-bottom: 25%;
-        padding-top: 3%;
-        padding-right: 2%;
-        padding-left: 15%;
-
+        padding-left: 2%;
+        /* إلغاء المساحة الكبيرة على الموبايل */
+        padding-bottom: 10%;
     }
+}
 
-    /* الحاوية الرئيسية للقسم */
-    #search-results-section {
-        direction: rtl;
-        /* يدعم الكتابة من اليمين لليوم */
-        max-width: 900px;
-        margin: 40px auto;
-        margin-top: 5%;
-        padding: 0 20px;
-        font-family: 'Cairo', sans-serif;
-        /* خط مريح ومناسب للمواقع القانونية */
-    }
+/* الحاوية الرئيسية للقسم */
+#search-results-section {
+    direction: rtl;
+    max-width: 900px;
+    margin: 40px auto;
+    margin-top: 5%;
+    padding: 0 20px;
+    font-family: 'Cairo', sans-serif;
+}
 
-    /* عنوان نتائج البحث */
-    #search-results-section h2 {
-        color: #2c3e50;
-        font-size: 1.8rem;
-        margin-bottom: 25px;
-        border-bottom: 2px solid #e0e0e0;
-        padding-bottom: 10px;
-    }
+/* عنوان نتائج البحث */
+#search-results-section h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
 
-    /* تمييز الكلمة المبحوث عنها */
-    #search-results-section .query-highlight {
-        color: #c0392b;
-        /* لون أحمر داكن/عنابي يناسب الطابع القانوني */
-        font-weight: bold;
-    }
+/* تمييز الكلمة المبحوث عنها */
+#search-results-section .query-highlight {
+    color: #c0392b;
+    font-weight: bold;
+}
 
-    /* القائمة الاحتوائية */
-    #search-results-section .results-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+/* القائمة الاحتوائية */
+#search-results-section .results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-    /* بطاقة النتيجة الفردية */
-    #search-results-section .result-item {
-        background-color: #ffffff;
-        border: 1px solid #e6e9ed;
-        border-radius: 8px;
-        margin-bottom: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-        transition: all 0.3s ease;
-    }
+/* بطاقة النتيجة الفردية */
+#search-results-section .result-item {
+    background-color: #ffffff;
+    border: 1px solid #e6e9ed;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
 
-    /* رابط النتيجة */
-    #search-results-section .result-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        text-decoration: none;
-        color: inherit;
-        width: 100%;
-        box-sizing: border-box;
-    }
+/* رابط النتيجة */
+#search-results-section .result-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    /* تأثير حركة البطاقة عند مرور الماوس */
-    #search-results-section .result-item:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        border-color: #bdc3c7;
-    }
+/* تأثير حركة البطاقة عند مرور الماوس */
+#search-results-section .result-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: #bdc3c7;
+}
 
-    /* عنوان الاستشارة داخل البطاقة */
-    #search-results-section .result-title {
-        margin: 0;
-        font-size: 1.2rem;
-        color: #34495e;
-        font-weight: 600;
-        transition: color 0.2s ease;
-    }
+/* عنوان الاستشارة داخل البطاقة */
+#search-results-section .result-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #34495e;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
 
-    #search-results-section .result-item:hover .result-title {
-        color: #c0392b;
-        /* يتغير اللون عند التحويم */
-    }
+#search-results-section .result-item:hover .result-title {
+    color: #c0392b;
+}
 
-    /* نص "عرض التفاصيل" */
-    #search-results-section .read-more {
-        font-size: 0.9rem;
-        color: #7f8c8d;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
+/* نص "عرض التفاصيل" */
+#search-results-section .read-more {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
-    #search-results-section .result-item:hover .read-more {
-        color: #c0392b;
-    }
+#search-results-section .result-item:hover .read-more {
+    color: #c0392b;
+}
 
-    /* تنسيق حالة عدم وجود نتائج */
-    #search-results-section .no-results {
-        text-align: center;
-        padding: 40px 20px;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        border: 1px dashed #dcdde1;
-        color: #7f8c8d;
-    }
+/* تنسيق حالة عدم وجود نتائج */
+#search-results-section .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px dashed #dcdde1;
+    color: #7f8c8d;
+}
 
-    #search-results-section .no-results i {
-        font-size: 2.5rem;
-        color: #bdc3c7;
-        margin-bottom: 15px;
-    }
+#search-results-section .no-results i {
+    font-size: 2.5rem;
+    color: #bdc3c7;
+    margin-bottom: 15px;
+}
 
-    #search-results-section .no-results p {
-        margin: 0;
-        font-size: 1.1rem;
-    }
+#search-results-section .no-results p {
+    margin: 0;
+    font-size: 1.1rem;
+}
 
-    /* الحاوية الرئيسية لقسم الأرشيف */
-    #archive-news-section {
-        direction: rtl;
-        max-width: 900px;
-        margin: 40px auto;
-        margin-top: 5%;
-        padding: 3%;
-        font-family: 'Cairo', sans-serif;
-    }
+/* الحاوية الرئيسية لقسم الأرشيف */
+#archive-news-section {
+    direction: rtl;
+    max-width: 900px;
+    margin: 40px auto;
+    margin-top: 5%;
+    padding: 3%;
+    font-family: 'Cairo', sans-serif;
+}
 
-    /* عنوان أرشيف الأخبار */
-    #archive-news-section h2 {
-        color: #2c3e50;
-        font-size: 1.8rem;
-        margin-bottom: 25px;
-        border-bottom: 2px solid #e0e0e0;
-        padding-bottom: 10px;
-    }
+/* عنوان أرشيف الأخبار */
+#archive-news-section h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
 
-    /* القائمة الاحتوائية للأرشيف */
-    #archive-news-section .archive-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+/* القائمة الاحتوائية للأرشيف */
+#archive-news-section .archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-    /* بطاقة الخبر الفردية في الأرشيف */
-    #archive-news-section .archive-item {
-        background-color: #ffffff;
-        border: 1px solid #e6e9ed;
-        border-radius: 8px;
-        margin-bottom: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-        transition: all 0.3s ease;
-    }
+/* بطاقة الخبر الفردية في الأرشيف */
+#archive-news-section .archive-item {
+    background-color: #ffffff;
+    border: 1px solid #e6e9ed;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
 
-    /* رابط الخبر */
-    #archive-news-section .archive-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        text-decoration: none;
-        color: inherit;
-        width: 100%;
-        box-sizing: border-box;
-    }
+/* رابط الخبر */
+#archive-news-section .archive-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    /* تأثير حركة البطاقة عند مرور الماوس */
-    #archive-news-section .archive-item:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        border-color: #bdc3c7;
-    }
+/* تأثير حركة البطاقة عند مرور الماوس */
+#archive-news-section .archive-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: #bdc3c7;
+}
 
-    /* عنوان الخبر داخل البطاقة */
-    #archive-news-section .archive-title {
-        margin: 0;
-        font-size: 1.2rem;
-        color: #34495e;
-        font-weight: 600;
-        transition: color 0.2s ease;
-    }
+/* عنوان الخبر داخل البطاقة */
+#archive-news-section .archive-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #34495e;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
 
-    #archive-news-section .archive-item:hover .archive-title {
-        color: #c0392b;
-        /* اللون العنابي عند التحويم */
-    }
+#archive-news-section .archive-item:hover .archive-title {
+    color: #c0392b;
+}
 
-    /* نص "عرض التفاصيل" */
-    #archive-news-section .archive-read-more {
-        font-size: 0.9rem;
-        color: #7f8c8d;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
+/* نص "عرض التفاصيل" */
+#archive-news-section .archive-read-more {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
-    #archive-news-section .archive-item:hover .archive-read-more {
-        color: #c0392b;
-    }
+#archive-news-section .archive-item:hover .archive-read-more {
+    color: #c0392b;
+}
 
-    /* تنسيق حالة الأرشيف الفارغ */
-    #archive-news-section .archive-no-results {
-        text-align: center;
-        padding: 40px 20px;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        border: 1px dashed #dcdde1;
-        color: #7f8c8d;
-    }
+/* تنسيق حالة الأرشيف الفارغ */
+#archive-news-section .archive-no-results {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px dashed #dcdde1;
+    color: #7f8c8d;
+}
 
-    #archive-news-section .archive-no-results i {
-        font-size: 2.5rem;
-        color: #bdc3c7;
-        margin-bottom: 15px;
-    }
+#archive-news-section .archive-no-results i {
+    font-size: 2.5rem;
+    color: #bdc3c7;
+    margin-bottom: 15px;
+}
 
-    #archive-news-section .archive-no-results p {
-        margin: 0;
-        font-size: 1.1rem;
-    }
+#archive-news-section .archive-no-results p {
+    margin: 0;
+    font-size: 1.1rem;
+}
 
-    /* تنسيق أزرار التنقل (Pagination) لعناكب جوجل والزوار */
-    .archive-pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin-top: 30px;
-        font-size: 0.95rem;
-    }
+/* تنسيق أزرار التنقل (Pagination) */
+.archive-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    font-size: 0.95rem;
+}
 
-    .archive-pagination .page-link {
-        color: #ffffff;
-        background-color: #2c3e50;
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.2s;
-    }
+.archive-pagination .page-link {
+    color: #ffffff;
+    background-color: #2c3e50;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
 
-    .archive-pagination .page-link:hover {
-        background-color: #c0392b;
-    }
+.archive-pagination .page-link:hover {
+    background-color: #c0392b;
+}
 
-    .archive-pagination .current-page {
-        color: #7f8c8d;
-        font-weight: bold;
-    }
+.archive-pagination .current-page {
+    color: #7f8c8d;
+    font-weight: bold;
+}
 
-    /* تنسيق الحاوية الرئيسية لجعل النص مريحاً للعين وتدعم اللغة العربية */
-    #privacy-policy-container {
-        direction: rtl;
-        text-align: right;
-        padding: 20px;
-        max-width: 900px;
-        margin: 0 auto;
-        line-height: 1.8;
-    }
+/* تنسيق الحاوية الرئيسية لسياسة الخصوصية */
+#privacy-policy-container {
+    direction: rtl;
+    text-align: right;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
 
-    /* تنسيق العنوان الرئيسي */
-    .policy-main-title {
-        color: #2c3e50;
-        margin-bottom: 30px;
-    }
+/* تنسيق العنوان الرئيسي */
+.policy-main-title {
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
 
-    /* تنسيق العناوين الفرعية */
-    .policy-section-title {
-        color: #34495e;
-        margin-top: 25px;
-        font-size: 1.4rem;
-    }
+/* تنسيق العناوين الفرعية */
+.policy-section-title {
+    color: #34495e;
+    margin-top: 25px;
+    font-size: 1.4rem;
+}
 
-    /* تنسيق الروابط داخل السياسة */
-    .policy-link {
-        color: #3498db;
-        text-decoration: none;
-    }
+/* تنسيق الروابط داخل السياسة */
+.policy-link {
+    color: #3498db;
+    text-decoration: none;
+}
 
-    .policy-link:hover {
-        text-decoration: underline;
-    }
+.policy-link:hover {
+    text-decoration: underline;
+}
 
-    /* تنسيق ملاحظة التنبيه */
-    .notice-text {
-        background-color: #fcf8e3;
-        padding: 10px;
-        border-right: 4px solid #f0ad4e;
-    }
+/* تنسيق ملاحظة التنبيه */
+.notice-text {
+    background-color: #fcf8e3;
+    padding: 10px;
+    border-right: 4px solid #f0ad4e;
 }
