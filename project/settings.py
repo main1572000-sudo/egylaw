@@ -147,5 +147,24 @@ STORAGES = {
     },
 }
 #---------
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
+CKEDITOR_5_UPLOAD_FILE_VIEW_NAME = "django_ckeditor_5:upload_file"
+# تأكد من كتابة الاسم بالحروف الكبيرة تماماً وبدون أي أخطاء إملائية
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link', 
+            'bulletedList', 'numberedList', 'blockQuote', 'imageUpload'
+        ],
+    },
+    'extends': {
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough', '|',
+            'fontColor', 'fontBackgroundColor', 'fontFamily', 'fontSize', '|',
+            'bulletedList', 'numberedList', 'todoList', '|',
+            'insertTable', 'uploadImage', 'mediaEmbed', '|',
+            'undo', 'redo'
+        ],
+    }
+}
