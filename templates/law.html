@@ -6,7 +6,7 @@
     {% for x in subject %}
         <div id="forpages">
             <h1>{{x.header}}</h1>
-            <P id="lawpage">{{x.content|safe}}</p>
+            <div id="lawpage">{{x.content|safe}}</div>
         </div>
     {% endfor %}
 {% endblock main %}
