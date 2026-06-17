@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock title %}
+
+{% block main %}
+<div id="privacy-policy-container">
+    <h1 class="policy-main-title">من نحن - موقع EGYLAW</h1>
+    
+    <p class="policy-lead-text">
+        مرحباً بكم في <strong>EGYLAW</strong> المنصة القانونية الإلكترونية المتاحة عبر الرابط: <a href="http://www.egylaw.site" class="policy-link">www.egylaw.site</a>. نحن نسعى لتقديم المحتوى القانوني بأسلوب مبسط ومنظم يسهل على الجميع الوصول إليه وفهمه.
+    </p>
+
+    <h2 class="policy-section-title">رؤيتنا وهدفنا</h2>
+    <p class="policy-text">
+        تأسس موقع <strong>EGYLAW</strong> ليكون رفيقاً معرفياً يساهم في نشر الوعي القانوني وتوفير بيئة رقمية تساعد المستخدمين في العثور على الإرشادات والمعلومات القانونية الأساسية وتصفحها بسلاسة. نؤمن بأن المعرفة بالقانون حق مكفول للجميع، ولذلك نعمل على تبسيط البحث والاطلاع على المواد الثقافية والقانونية المتنوعة.
+    </p>
+
+    <h2 class="policy-section-title">ماذا نقدم؟</h2>
+    <div class="policy-block-text">
+        <p class="policy-text">
+            • <strong>البحث الذكي والمرن:</strong> نوفر محرك بحث مخصص داخل الموقع يتيح لك العثور على الموضوعات والتقسيمات القانونية بسرعة فائقة ودون تعقيد.
+        </p>
+        <p class="policy-text">
+            • <strong>محتوى منظم ومتجدد:</strong> نعمل على تصنيف وتبويب المحتوى بشكل أرشيفي واضح يسهل على القارئ العادي والمتخصص الوصول للمعلومة مباشرة.
+        </p>
+        <p class="policy-text">
+            • <strong>بيئة تصفح آمنة وموثوقة:</strong> نلتزم بتوفير تجربة تصفح سريعة وآمنة تحمي خصوصية الزوار وتلتزم بالمعايير المهنية لتصفح الويب.
+        </p>
+    </div>
+
+    <h2 class="policy-section-title">تنبيه قانوني هام</h2>
+    <p class="policy-text notice-text">
+        يرجى العلم أن المواد والإرشادات المنشورة في موقع <strong>EGYLAW</strong> هي لأغراض التثقيف العام والتوعية فقط، ولا تُعامل معاملة الاستشارة القانونية المهنية المخصصة. للاطلاع الكامل على حدود المسؤولية، يرجى مراجعة صفحة الشروط والأحكام الخاصة بنا.
+    </p>
+
+    <h2 class="policy-section-title">تواصل معنا</h2>
+    <div class="policy-block-text">
+        <p class="policy-text">
+            يسعدنا دائماً استقبال مقترحاتكم أو استفساراتكم لتطوير المنصة، يمكنك التواصل مع إدارة الموقع مباشرة عبر:
+        </p>
+        <p class="policy-text">
+            • البريد الإلكتروني: <a href="mailto:fake1572000@gmail.com" class="policy-link">fake1572000@gmail.com</a>
+        </p>
+        <p class="policy-text">
+            • أو من خلال تعبئة النموذج عبر: <a href="{% url 'Contact_Us' %}" class="policy-link">صفحة اتصل بنا</a>
+        </p>
+    </div>
+
+    <div class="policy-block-text">
+        <p class="policy-date-text" style="margin-top: 30px;">
+            تاريخ الإطلاق والتحديث: <span class="policy-date">17/6/2026</span>.
+        </p>
+    </div>
+</div>
+{% endblock main %}

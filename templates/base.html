@@ -26,14 +26,14 @@
 
             <div class="nav-social">
                 <a href="https://www.facebook.com/profile.php?id=61590479204592" class="social-icon facebook" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/01281379733?text=السلام+عليكم" class="social-icon whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+                <a href="{%url 'soon'%}" class="social-icon whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
                 <div class="nav-dropdown">
                     <button class="dropdown-btn"><i class="fas fa-bars"></i></button>
                     <div class="dropdown-content">
                         <a href="{% url 'archive' %}"><i class="fas fa-gavel"></i>المقالات</a>
                         {% comment %} <a href="#"><i class="fas fa-users"></i> فريق العمل</a> {% endcomment %}
-                        <a href="https://wa.me/01281379733?text=السلام+عليكم"><i class="fas fa-headset"></i> طلب استشارة</a>
-                        <a href="{% url 'Privacy_Policy'%}"><i class="fas fa-file-alt"></i>Privacy Policy</a>
+                        <a href="{%url 'soon'%}"><i class="fas fa-headset"></i> طلب استشارة</a>
+                        <a href="https://www.facebook.com/profile.php?id=100069358306013"><i class="fas fa-file-alt"></i>مطور الموقع</a>
                     </div>
                 </div>
             </div>
@@ -52,23 +52,24 @@
             <div class="footer-column about-box">
                 <h3 class="footer-logo">egy<span>law</span></h3>
                 <p class="footer-description">
-                    منصة قانونية رائدة تقدم استشارات وحلولاً قانونية متكاملة للأفراد والشركات، نسعى دائماً لتحقيق العدالة وحماية حقوق عملائنا بأعلى معايير المهنية.
+                    منصة قانونية تثقيفية تقدم استشارات وحلولاً قانونية متكاملة للأفراد والشركات، نسعى دائماً لتحقيق العدالة وحماية حقوق عملائنا بأعلى معايير المهنية.
                 </p>
             </div>
 
             <div class="footer-column">
-                <h4 class="column-title">مطور الموقع</h4>
+                <h4 class="column-title">هـــام</h4>
                 <ul class="footer-links">
                     {% comment %} <li><a href="#">الرئيسية</a></li> {% endcomment %}
                     {% comment %} <li><a href="#">من نحن</a></li> {% endcomment %}
-                    <li><a href="https://www.facebook.com/profile.php?id=100069358306013">فيسبوك</a></li>
-                    <li><a href="https://my00store.pythonanywhere.com">portfolio</a></li>
-                    <li><a href="https://wa.me/01123550058?text=مرحبا+اعجبني+تصميمك">اتصل بنا</a></li>
+                    <li><a href="{% url 'Privacy_Policy'%}"><i class="fas fa-file-alt"></i> Privacy Policy </a></li>
+                    <li><a href="{% url 'Terms_And_Conditions'%}"><i class="fas fa-file-alt"></i> Terms and Conditions </a></li>
+                    <li><a href="{% url 'About_Us'%}"><i class="fas fa-file-alt"></i> About Us </a></li>
+                    <li><a href="{% url 'Contact_Us'%}"><i class="fas fa-file-alt"></i> Contact Us </a></li>
                 </ul>
             </div>
 
             <div class="footer-column">
-                <h4 class="column-title">مجالات التخصص</h4>
+                <h4 class="column-title">المواضيع الرئيسية</h4>
                 <ul class="footer-links">
                     <li><a href="http://egylaw.site/search/?q=القانون+المدني">القانون المدني</a></li>
                     <li><a href="http://egylaw.site/search/?q=القانون+الجنائي">القانون الجنائي</a></li>
@@ -82,13 +83,13 @@
             <div class="footer-column contact-box">
                 <h4 class="column-title">تواصل معنا</h4>
                 <ul class="contact-info">
-                    <li><i class="fas fa-map-marker-alt"></i> <span>سوهاج، جمهورية مصر العربية</span></li>
-                    <li><i class="fas fa-phone-alt"></i> <span>+20 12813*****</span></li>
-                    <li><i class="fas fa-envelope"></i> <span>****@gmail.com</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>جمهورية مصر العربية</span></li>
+                    <li><i class="fas fa-phone-alt"></i> <span>000-000-000</span></li>
+                    <li><i class="fas fa-envelope"></i> <span>fake1572000@gmail.com</span></li>
                 </ul>
                 <div class="footer-social">
                     <a href="https://www.facebook.com/profile.php?id=61590479204592" class="f-social-icon fb"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://wa.me/01281379733?text=السلام+عليكم" class="f-social-icon wa"><i class="fab fa-whatsapp"></i></a>
+                    <a href="{%url 'soon'%}" class="f-social-icon wa"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 

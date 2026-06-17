@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block main %}
+<div id="privacy-policy-container">
+    <h1 class="policy-main-title">اتصل بنا - موقع EGYLAW</h1>
+    
+    <p class="policy-lead-text">
+        يسعدنا دائماً تواصلكم معنا. إذا كان لديك أي استفسار، اقتراح، أو ترغب في الإبلاغ عن مشكلة تخص موقع <strong>EGYLAW</strong>، يمكنك مراسلتنا مباشرة عبر النموذج أدناه أو باستخدام البريد الإلكتروني الرسمي.
+    </p>
+
+    <h2 class="policy-section-title">بيانات التواصل المباشر</h2>
+    <div class="policy-block-text">
+        <p class="policy-text">
+            • <strong>البريد الإلكتروني الرسمي:</strong> <a href="mailto:fake1572000@gmail.com" class="policy-link">fake1572000@gmail.com</a>
+        </p>
+        <p class="policy-text notice-text">
+            <strong>ملاحظة:</strong> نسعى جاهدين للرد على جميع رسائلكم واستفساراتكم في أقرب وقت ممكن (عادةً خلال 24 إلى 48 ساعة عمل).
+        </p>
+    </div>
+
+    <h2 class="policy-section-title">نموذج المراسلة الفورية</h2>
+<div class="policy-block-text" style="margin-top: 20px;">
+    <!-- استبدل الرابط أدناه بالرابط الذي ستعطيك إياه منصة Formspree -->
+    <form method="POST" action="https://formspree.io/f/mpqeeqrv" style="display: flex; flex-direction: column; gap: 15px; max-width: 500px;">
+        
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="user_name" class="policy-text" style="font-weight: bold;">الاسم الكامل:</label>
+            <input type="text" id="user_name" name="name" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit;">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="user_email" class="policy-text" style="font-weight: bold;">البريد الإلكتروني:</label>
+            <!-- ملاحظة: يجب أن يكون اسم الحقل name="_replyto" أو name="email" ليفهم الموقع أنه بريد المرسل للرد عليه -->
+            <input type="email" id="user_email" name="email" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; text-align: left; direction: ltr;">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="message_subject" class="policy-text" style="font-weight: bold;">موضوع الرسالة:</label>
+            <input type="text" id="message_subject" name="subject" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit;">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="user_message" class="policy-text" style="font-weight: bold;">نص الرسالة:</label>
+            <textarea id="user_message" name="message" rows="6" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+        </div>
+
+        <button type="submit" class="policy-link" style="background-color: #3498db; color: white; border: none; padding: 12px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; align-self: flex-start; font-family: inherit; transition: background 0.3s;">
+            إرسال الرسالة
+        </button>
+    </form>
+</div>
+<!-- كود CSS بسيط وخفيف لإعطاء زر الإرسال تأثير عند مرور الماوس ليطابق بقية التصميم -->
+<style>
+    button[type="submit"]:hover {
+        background-color: #2980b9 !important;
+        text-decoration: none !important;
+    }
+    input:focus, textarea:focus {
+        border-color: #3498db !important;
+        outline: none;
+    }
+</style>
+{% endblock main %}

@@ -168,3 +168,5 @@ CKEDITOR_5_CONFIGS = {
         ],
     }
 }
+# جرب إيقاف هذه الإعدادات مؤقتاً لمعرفة إن كانت هي السبب:
+# SECURE_SSL_REDIRECT = False

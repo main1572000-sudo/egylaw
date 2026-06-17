@@ -43,3 +43,15 @@ def archive_view(request):
 
 def Privacy_Policy(request):
     return render(request,'Privacy_Policy.html')
+
+def Terms_and_Conditions(request):
+    return render(request,'terms.html')
+
+def About_Us(request):
+    return render(request,'aboutus.html')
+
+def Contact_Us(request):
+    return render(request,'contactus.html')
+
+def Soon(request):
+    return render(request,'soon.html')
