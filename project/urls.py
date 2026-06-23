@@ -32,6 +32,11 @@ urlpatterns = [
         name="ads_txt"
     ),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    path('ckeditor5/', include('django_ckeditor_5.urls'))
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
+    # السطر السحري لقراءة ملف robots.txt
+    path(
+        'robots.txt',
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # 

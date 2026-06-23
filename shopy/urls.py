@@ -11,5 +11,4 @@ urlpatterns = [
     path('About_Us/', views.About_Us, name='About_Us'),
     path('soon/', views.Soon, name='soon'),
     path('Terms_And_Conditions/', views.Terms_and_Conditions, name='Terms_And_Conditions'),
-    
 ]
