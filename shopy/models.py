@@ -16,7 +16,7 @@ class Info(models.Model):
     slug = models.SlugField(allow_unicode=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     def get_absolute_url(self):
-        return reverse('law', args=[self.id])
+        return reverse('law', kwargs={'pk': self.pk, 'slug': self.slug})
     
     def __str__(self):
         return self.header
