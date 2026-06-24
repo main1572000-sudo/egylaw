@@ -9,7 +9,7 @@
             <ul class="results-list">
                 {% for item in results %}
                     <li class="result-item">
-                        <a href="{% url 'law' item.id %}" class="result-link">
+                        <a href="{% url 'law' item.id item.slug %}" class="result-link">
                             <h3 class="result-title">{{ item.header }}</h3>
                             <span class="read-more">عرض التفاصيل <i class="fas fa-chevron-left"></i></span>
                         </a>
