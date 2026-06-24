@@ -13,6 +13,7 @@ class Info(models.Model):
     header = models.CharField('العنوان',max_length=50)
     content = CKEditor5Field('المحتوى', config_name='extends')
     catagory = models.ForeignKey(Catagory,verbose_name='التصنيف', on_delete=models.CASCADE)
+    slug = models.SlugField(allow_unicode=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     def get_absolute_url(self):
         return reverse('law', args=[self.id])

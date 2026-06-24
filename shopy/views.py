@@ -12,7 +12,7 @@ def ping(request):
 def main(request):
     return render(request,'main.html')
 
-def law(request,pk):
+def law(request,pk,slug):
     z = Info.objects.filter(pk = pk)
     data = get_object_or_404(Info,pk=pk)
     return render(request, 'law.html', {'data': data,'subject':z})
