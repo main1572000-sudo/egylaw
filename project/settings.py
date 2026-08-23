@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shopy',
+    'log',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django_ckeditor_5',
     'django.contrib.sites',     # مطلوب لتحديد نطاق موقعك
     'django.contrib.sitemaps',  # تطبيق الخرائط
@@ -168,5 +171,9 @@ CKEDITOR_5_CONFIGS = {
         ],
     }
 }
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 # جرب إيقاف هذه الإعدادات مؤقتاً لمعرفة إن كانت هي السبب:
 # SECURE_SSL_REDIRECT = False
+LOGOUT_REDIRECT_URL = 'archive'
+LOGIN_REDIRECT_URL = 'archive'

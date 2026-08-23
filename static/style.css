@@ -239,6 +239,26 @@ body {
     line-height: 1.6;
 }
 
+#hello {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #1a1919;
+    color: #c5a880;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    /* box-shadow: 0 4px 15px rgba(197, 168, 128, 0.4); */
+}
+
+#hello:hover {
+    cursor: pointer;
+    /* background-color: #ffa1a1; */
+    color: #5f0707;
+    transform: translateY(-3px);
+    /* box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2); */
+}
+
 /* تنسيق أزرار السلايدر */
 .carousel-btn {
     display: inline-block;

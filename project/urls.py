@@ -26,6 +26,7 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('shopy.urls')),
+    path('auth/',include('log.urls')),
     path(
         'ads.txt', 
         TemplateView.as_view(template_name="ads.txt", content_type="text/plain"), 

@@ -2,7 +2,7 @@ from django.contrib.sitemaps import Sitemap
 from .models import Info # استبدل Post بموديل المقالات أو الصفحات لديك
 
 class PostSitemap(Sitemap):
-    changefreq = "weekly" # معدل تغير المحتوى (يومي، أسبوعي، شهري)
+    changefreq = "daily" # معدل تغير المحتوى (يومي، أسبوعي، شهري)
     priority = 0.8        # أهمية الروابط من 0.0 إلى 1.0
 
     def items(self):
