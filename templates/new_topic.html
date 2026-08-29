@@ -1,0 +1,54 @@
+{% extends "dashboard.html" %}
+{% block title %}إدارة المقالات - كتابة مقال{% endblock title %}
+
+{% block main %}
+<!-- تضمين ملفات الجافاسكريبت والسي اس اس الخاصة بالمحرر -->
+{{ form.media }}
+
+<div class="form-wrapper">
+    <div class="form-header">
+        <h2>إضافة مقال جديد</h2>
+        <p>قم بملء الحقول أدناه لإضافة المقال ونشره في النظام</p>
+    </div>
+
+    <div class="form-card">
+        <form method="POST" class="custom-article-form">
+            {% csrf_token %}
+            
+            <!-- حقل العنوان -->
+            <div class="form-group">
+                <label for="{{ form.header.id_for_label }}">عنوان المقال</label>
+                {{ form.header }}
+            </div>
+
+            <!-- حقل التصنيف -->
+            <div class="form-group">
+                <label for="{{ form.catagory.id_for_label }}">التصنيف</label>
+                {{ form.catagory }}
+            </div>
+
+            <!-- حقل الـ Slug -->
+            <div class="form-group">
+                <label for="{{ form.slug.id_for_label }}">الرابط المختصر (Slug)</label>
+                {{ form.slug }}
+            </div>
+
+            <!-- حقل المحتوى مع محرر CKEditor 5 -->
+            <div class="form-group full-width">
+                <label for="{{ form.content.id_for_label }}">محتوى المقال</label>
+                {{ form.content }}
+            </div>
+
+            <!-- الأزرار -->
+            <div class="form-actions">
+                <button type="submit" class="btn-save">
+                    <i class="fa-solid fa-check"></i> حفظ ونشر المقال
+                </button>
+                <a href="{% url 'topics' %}" class="btn-cancel">
+                    <i class="fa-solid fa-xmark"></i> إلغاء
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock main %}

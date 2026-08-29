@@ -1,0 +1,86 @@
+{% extends "dashboard.html" %}
+{% block title %}users{% endblock title %}
+{% block main %}
+ <section class="content-body">
+    <div class="page-title">
+        <h1>إدارة المستخدمين</h1>
+        <p>عرض وإدارة حسابات المستخدمين المسجلين في النظام</p>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>اسم المستخدم</th>
+                    <th>الحالة</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in users %}
+                <tr>
+                    <td>{{ x.id }}</td>
+                    <td>
+                        <div class="user-info-cell">
+                            <i class="fa-solid fa-user-circle"></i>
+                            <span>{{ x.username }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        {% if x.is_active %}
+                            <span class="badge active">مفعل</span>
+                        {% else %}
+                            <span class="badge inactive">غير مفعل</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <form action="{%url 'delete_user' x.id%}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-action delete" title="حذف" onclick="return confirm('هل أنت متأكد من حذف هذا المستخدم ؟');">
+                                    <i class="fa-solid fa-trash"></i> حذف
+                                </button>
+                            </form>
+
+                            {% if x.is_active %}
+                                <form action="{%url 'deactivate_user' x.id%}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-action deactivate" title="إلغاء تفعيل">
+                                        <i class="fa-solid fa-user-slash"></i> إلغاء تفعيل
+                                    </button>
+                                </form>
+                            {% else %}
+                                <form action="{%url 'activate_user' x.id%}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-action activate" title="تفعيل">
+                                        <i class="fa-solid fa-user-check"></i> تفعيل
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="?page={{ page|add:"-1" }}" class="page-btn"><i class="fa-solid fa-chevron-right"></i> السابق</a>
+        {% else %}
+            <span class="page-btn disabled"><i class="fa-solid fa-chevron-right"></i> السابق</span>
+        {% endif %}
+
+        <span class="page-info">الصفحة {{ page }}</span>
+
+        {% if has_next %}
+            <a href="?page={{ page|add:"1" }}" class="page-btn">التالي <i class="fa-solid fa-chevron-left"></i></a>
+        {% else %}
+            <span class="page-btn disabled">التالي <i class="fa-solid fa-chevron-left"></i></span>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock main %}

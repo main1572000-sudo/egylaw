@@ -1,5 +1,15 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /static/admin/
+Disallow: /dashboard/
+Disallow: /dashboard/users/
+Disallow: /dashboard/users/activate/<int:user_id>/
+Disallow: /dashboard/users/deactivate/<int:user_id>/
+Disallow: /dashboard/users/delete/<int:user_id>/
+Disallow: /dashboard/topics/
+Disallow: /dashboard/topics/new_topic/
+Disallow: /dashboard/topics/delete_topic/
+Disallow: /dashboard/topics/edit_topic/<int:pk>/
+Disallow: /ping/
 
 Sitemap: https://egylaw.site/sitemap.xml

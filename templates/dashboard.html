@@ -1,0 +1,100 @@
+{% load static %}
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}dashboard{% endblock title %}</title>
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg-black: #121212;
+    --panel-black: #1e1e1e;
+    --border-color: #2c2c2c;
+    --gold-primary: #d4af37;
+    --gold-light: #f3e5ab;
+    --text-white: #ffffff;
+    --text-gray: #a0a0a0;
+    --transition: all 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    direction: rtl;
+}
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>لوحة التحكم</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="{%url 'users_list'%}"><i class="fa-solid fa-users"></i> المستخدمين</a></li>
+                {% comment %} <li><a href="{%url 'dashboard'%}" class="active"><i class="fa-solid fa-house"></i> الرئيسية</a></li> {% endcomment %}
+                <li><a href="{%url 'topics'%}"><i class="fa-solid fa-wallet"></i>المقالات</a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i> الإعدادات</a></li>
+                {% comment %} <li><a href="#"><i class="fa-solid fa-chart-line"></i> الإحصائيات</a></li>
+                <li><a href="#"><i class="fa-solid fa-box"></i> المنتجات</a></li> {% endcomment %}
+                <li class="logout"><a href="{%url 'main'%}"><i class="fa-solid fa-right-from-bracket"></i>العودة</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-navbar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="بحث في الصفحة . . .">
+                </div>
+                <div class="user-profile">
+                    <span class="admin-name">المشرف العام</span>
+                    <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                </div>
+            </header>
+            {% block main %}{% endblock main %}
+<script>document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-box input');
+    
+    // تأكد من وجود حقل البحث في الصفحة لكي لا يحدث خطأ
+    if (!searchInput) return;
+
+    let debounceTimer;
+
+    searchInput.addEventListener('input', function() {
+        // مسح المؤقت السابق لضمان عدم تنفيذ البحث مع كل حرف فوري
+        clearTimeout(debounceTimer);
+
+        // الانتظار لمدة ثانية واحدة (1000 مللي ثانية) بعد التوقف عن الكتابة
+        debounceTimer = setTimeout(() => {
+            const query = searchInput.value.trim().toLowerCase();
+
+            // حدد العناصر التي تريد البحث فيها (مثلاً: بطاقات المقالات أو صفوف الجدول)
+            // قم بتغيير السلسلة ليطابق الكلاس الخاص بالعناصر لديك (مثل .article-card أو tr)
+            const searchableItems = document.querySelectorAll('.article-card, .data-table tbody tr');
+
+            searchableItems.forEach(item => {
+                const textContent = item.textContent.toLowerCase();
+
+                // إذا كانت الكلمة موجودة في العنصر، قم بإظهاره، وإلا قم بإخفائه
+                if (textContent.includes(query)) {
+                    item.style.display = ''; // يعود للعرض الافتراضي
+                } else {
+                    item.style.display = 'none'; // إخفاء العنصر غير المطابق
+                }
+            });
+        }, 1000); // 1000 تعني ثانية واحدة
+    });
+});</script> 
+</body>
+
+</html>

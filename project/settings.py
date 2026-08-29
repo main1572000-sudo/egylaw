@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
     'egylaw.onrender.com', 
     'egylaw.site',     
     'www.egylaw.site',
+    # '192.168.1.10'
 ]
 
 # Application definition
@@ -177,3 +178,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # SECURE_SSL_REDIRECT = False
 LOGOUT_REDIRECT_URL = 'archive'
 LOGIN_REDIRECT_URL = 'archive'
+LOGIN_URL = 'login'

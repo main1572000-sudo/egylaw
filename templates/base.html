@@ -26,19 +26,45 @@
 
             <div class="nav-social">
                 {% if user.is_authenticated %}
-                {% include 'logout_button.html' %}
+                    <div class="user-profile-dropdown">
+                        <!-- زر الصورة الشخصية للمستخدم -->
+                        
+                        <button class="profile-avatar-btn" aria-label="قائمة المستخدم">
+                            <img src="{%static 'user.png'%}" alt="صورة المستخدم" class="avatar-img-tag">
+                        </button>
+                        <p id="welcome">{{user.username}}</p>
+                        
+
+                        <!-- محتوى القائمة المنسدلة للمستخدم -->
+                        <div class="profile-menu-content">
+                            {% if user.is_superuser %}
+                            <a href="{%url 'users_list'%}"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
+                            {%endif%}
+                            <a href="{%url 'changepw'%}"><i class="fas fa-key"></i> تغيير كلمة المرور</a>
+                            
+                            <!-- نموذج تسجيل الخروج ليعمل كـ POST -->
+                            <form action="{%url 'logout'%}" method="POST" class="logout-form-tag">
+                                {% csrf_token %}
+                                <button type="submit" class="profile-logout-btn">
+                                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
                 {% else %}
                 <a href="{%url 'login'%}" id="hello">دخـول</a>
                 {% endif %}
-                <a href="#" class="social-icon facebook" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="{%url 'soon'%}" class="social-icon whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+                <a href="{%url 'consult'%}" class="social-icon facebook" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="{%url 'consult'%}" class="social-icon whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
                 <div class="nav-dropdown">
                     <button class="dropdown-btn"><i class="fas fa-bars"></i></button>
                     <div class="dropdown-content">
                         <a href="{% url 'archive' %}"><i class="fas fa-gavel"></i>المقالات</a>
                         {% comment %} <a href="#"><i class="fas fa-users"></i> فريق العمل</a> {% endcomment %}
-                        <a href="{%url 'soon'%}"><i class="fas fa-headset"></i> طلب استشارة</a>
-                        <a href="#"><i class="fas fa-file-alt"></i>مطور الموقع</a>
+                        {% comment %} <a href="https://wa.me/201234567890?text=مرحباً،%20أريد%20الاستفسار%20عن%20خدماتكم"> {% endcomment %}
+                        <a href="{%url 'consult'%}"><i class="fas fa-headset"></i> طلب استشارة</a>
+                        {% comment %} <a href="#"><i class="fas fa-file-alt"></i>مطور الموقع</a> {% endcomment %}
                         
                     </div>
                 </div>
@@ -83,6 +109,7 @@
                     <li><a href="http://egylaw.site/search/?q=القانون+التجاري">القانون التجاري</a></li>
                     <li><a href="http://egylaw.site/search/?q=قانون+الاحوال+الشخصية">قانون الاحوال الشخصية</a></li>
                     <li><a href="http://egylaw.site/search/?q=قانون+العمل">قانون العمل </a></li>
+                    <li><a href="http://egylaw.site/search/?q=اخرى">معلومات عامة</a></li>
                 </ul>
             </div>
 
@@ -94,8 +121,8 @@
                     <li><i class="fas fa-envelope"></i> <span>---@gmail.com</span></li>
                 </ul>
                 <div class="footer-social">
-                    <a href="https://www.facebook.com/profile.php?id=61590479204592" class="f-social-icon fb"><i class="fab fa-facebook-f"></i></a>
-                    <a href="{%url 'soon'%}" class="f-social-icon wa"><i class="fab fa-whatsapp"></i></a>
+                    <a href="{%url 'consult'%}" class="f-social-icon fb"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{%url 'consult'%}" class="f-social-icon wa"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 

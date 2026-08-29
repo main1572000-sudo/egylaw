@@ -1,0 +1,95 @@
+{% extends "dashboard.html" %}
+{% block title %}إدارة المقالات{% endblock title %}
+
+{% block main %}
+<div class="article-manager">
+    
+    <!-- رأس الصفحة: العنوان ورزر الإضافة -->
+    <div class="manager-header">
+        <div class="title-group">
+            <h2>إدارة المقالات</h2>
+            <p>عرض وتحرير وحذف جميع المقالات المنشورة في الموقع</p>
+        </div>
+        <!-- رابط صفحة إضافة مقال جديد -->
+        <a href="{%url 'new_topic'%}" class="btn-create-article">
+            <i class="fa-solid fa-plus-circle"></i> إضافة مقال جديد
+        </a>
+    </div>
+
+    <!-- حاوية عرض المقالات -->
+    <div class="articles-grid-container">
+        {% if page_obj %}
+            <!-- شبكة البطاقات -->
+            <div class="articles-grid">
+                {% for item in page_obj %}
+                    <div class="article-card">
+                        <div class="article-card-header">
+                            <span class="article-id">#{{ item.id }}</span>
+                            <div class="article-icon">
+                                <i class="fa-solid fa-newspaper"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="article-body">
+                            <h3 class="article-heading">{{ item.header }}</h3>
+                            <!-- يمكنك إضافة مقتطف من محتوى المقال هنا إن وجد مثل {{ item.snippet }} -->
+                        </div>
+
+                        <div class="article-card-footer">
+                            <!-- زر التعديل -->
+                            <form action="{%url 'edit_topic' item.id %}" method="PUT" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="action-btn edit-btn" title="تعديل المقال">
+                                    <i class="fa-solid fa-pen-to-square"></i> تعديل
+                                </button>
+                            </form>
+                            <!-- زر الحذف (يجب أن يكون POST للأمان) -->
+                            <form action="{%url 'delete_topic' item.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="action-btn delete-btn" title="حذف المقال" onclick="return confirm('هل أنت متأكد من حذف هذا المقال؟');">
+                                    <i class="fa-solid fa-trash-can"></i> حذف
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- شريط التنقل بين الصفحات (Pagination) -->
+            {% if page_obj.has_other_pages %}
+                <div class="pagination-bar">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-control">
+                            <i class="fa-solid fa-chevron-right"></i> السابق
+                        </a>
+                    {% else %}
+                        <span class="page-control disabled"><i class="fa-solid fa-chevron-right"></i> السابق</span>
+                    {% endif %}
+                    
+                    <span class="page-indicator">الصفحة {{ page_obj.number }} من {{ page_obj.paginator.num_pages }}</span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="page-control">
+                            التالي <i class="fa-solid fa-chevron-left"></i>
+                        </a>
+                    {% else %}
+                        <span class="page-control disabled">التالي <i class="fa-solid fa-chevron-left"></i></span>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% else %}
+            <!-- حالة عدم وجود مقالات -->
+            <div class="no-articles-state">
+                <i class="fa-solid fa-folder-open"></i>
+                <h3>لا توجد مقالات مضافة حالياً</h3>
+                <p>ابدأ بإنشاء أول مقال في الموقع ليظهر هنا.</p>
+                <a href="#" class="btn-create-article mt-15">
+                    <i class="fa-solid fa-plus"></i> إضافة مقال الآن
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock main %}

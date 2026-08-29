@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}consultant{% endblock title %}
+
+{% block main %}
+<div id="privacy-policy-container">
+    <h1 class="policy-main-title">طلب استشارة</h1>
+    
+    {% comment %} <p class="policy-lead-text">
+        يسعدنا دائماً تواصلكم معنا. إذا كان لديك أي استفسار، اقتراح، أو ترغب في الإبلاغ عن مشكلة تخص موقع <strong>EGYLAW</strong>، يمكنك مراسلتنا مباشرة عبر النموذج أدناه أو باستخدام البريد الإلكتروني الرسمي.
+    </p> {% endcomment %}
+
+    {% comment %} <h2 class="policy-section-title">بيانات التواصل المباشر</h2>
+    <div class="policy-block-text">
+        <p class="policy-text">
+            • <strong>البريد الإلكتروني الرسمي:</strong> <a href="mailto:fake1572000@gmail.com" class="policy-link">fake1572000@gmail.com</a>
+        </p>
+        <p class="policy-text notice-text">
+            <strong>ملاحظة:</strong> نسعى جاهدين للرد على جميع رسائلكم واستفساراتكم في أقرب وقت ممكن (عادةً خلال 24 إلى 48 ساعة عمل).
+        </p>
+    </div> {% endcomment %}
+
+    <h2 class="policy-section-title">طلب استشارة قانونية</h2>
+<div class="policy-block-text" style="margin-top: 20px;">
+    <!-- نموذج Formspree للاستشارات القانونية -->
+    <form method="POST" action="https://formspree.io/f/mpqeeqrv" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 18px; max-width: 600px;">
+        
+        <!-- الاسم الكامل -->
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="user_name" class="policy-text" style="font-weight: bold;">الاسم الكامل:</label>
+            <input type="text" id="user_name" name="name" required placeholder="أدخل اسمك ثلاثياً" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit;">
+        </div>
+
+        <!-- البريد الإلكتروني -->
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="user_email" class="policy-text" style="font-weight: bold;">البريد الإلكتروني للرد:</label>
+            <input type="email" id="user_email" name="email" required placeholder="name@example.com" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; text-align: left; direction: ltr;">
+        </div>
+
+        <!-- رقم الهواتف / الواتساب -->
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="user_phone" class="policy-text" style="font-weight: bold;">رقم الجوال (للتواصل السريع):</label>
+            <input type="tel" id="user_phone" name="phone" placeholder="05xxxxxxxx" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; text-align: left; direction: ltr;">
+        </div>
+
+        <!-- نوع الاستشارة القانونية (قائمة منسدلة) -->
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="consultation_type" class="policy-text" style="font-weight: bold;">تصنيف الاستشارة القانونية:</label>
+            <select id="consultation_type" name="consultation_type" required style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; background-color: #fff;">
+                <option value="" disabled selected>-- اختر تخصص القضية --</option>
+                <option value="قضايا جنائية">قضايا جنائية</option>
+                <option value="قضايا مدنية وتجارية">قضايا مدنية وتجارية</option>
+                <option value="قضايا الأحوال الشخصية (أسرة)">قضايا الأحوال الشخصية (أسرة، طلاق، ميراث)</option>
+                <option value="قضايا عمالية">قضايا عمالية (شركات وموظفين)</option>
+                <option value="قضايا عقارية">قضايا عقارية وإيجارات</option>
+                <option value="استشارات عقود وتأسيس شركات">استشارات عقود وتأسيس شركات</option>
+                <option value="أخرى">أخرى</option>
+            </select>
+        </div>
+
+        <!-- موضوع أو عنوان الاستشارة -->
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="message_subject" class="policy-text" style="font-weight: bold;">عنوان موجز للاستشارة:</label>
+            <input type="text" id="message_subject" name="subject" required placeholder="مثال: استفسار بشأن فسخ عقد إيجار" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit;">
+        </div>
+
+        <!-- تفاصيل الاستشارة القانونية -->
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="user_message" class="policy-text" style="font-weight: bold;">شرح تفاصيل الوقائع والمشكلة:</label>
+            <textarea id="user_message" name="message" rows="7" required placeholder="يرجى سرد تفاصيل المشكلة القانونية باختصار، مع ذكر التواريخ والوقائع الهامة..." style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; resize: vertical;"></textarea>
+        </div>
+
+        <!-- أزرار الإرسال والتحقق عبر Django -->
+        {% if user.is_authenticated %}
+        <button type="submit" onclick="return confirm('هل أنت متأكد من رغبتك في إرسال طلب الاستشارة للمحامي؟');" class="policy-link" style="background-color: #1b365d; color: white; border: none; padding: 14px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; align-self: flex-start; font-family: inherit; transition: background 0.3s; font-size: 15px;">
+            إرسال طلب الاستشارة
+        </button>
+        {% else %}
+        <div style="background-color: #f8f9fa; border-right: 4px solid #1b365d; padding: 12px; border-radius: 4px;" class="policy-text">
+            <strong>ملاحظة هامة:</strong> لم تقم بتسجيل الدخول. يجب عليك إنشاء حساب من <a href="{% url 'register' %}" style="color: #1b365d; text-decoration: underline;">هنا</a> والتواصل مع <a href="{% url 'Contact_Us' %}" style="color: #1b365d; text-decoration: underline;">الإدارة</a> لتفعيل حسابك لكي تتمكن من إرسال الاستشارات القانونية.
+        </div>
+        {% endif %}
+    </form>
+</div>
+
+<!-- تحسينات التصميم التفاعلي (CSS) -->
+<style>
+    button[type="submit"]:hover {
+        background-color: #12233f !important;
+        text-decoration: none !important;
+    }
+    input:focus, textarea:focus, select:focus {
+        border-color: #1b365d !important;
+        outline: none;
+        box-shadow: 0 0 5px rgba(27, 54, 93, 0.2);
+    }
+</style>
+{% endblock main %}
