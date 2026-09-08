@@ -142,10 +142,11 @@ body {
 
 .carousel-container {
     width: 100%;
-    height: 80vh;
+    height: 90vh;
     position: relative;
     overflow: hidden;
     background-color: #000;
+    border-bottom: 3px solid #c5a880;
 }
 
 .carousel-slider {
@@ -225,7 +226,7 @@ body {
 
 #hello:hover {
     cursor: pointer;
-    color: #5f0707;
+    color: #053379;
     transform: translateY(-3px);
 }
 
@@ -262,7 +263,7 @@ body {
 
 @media (max-width: 768px) {
     .carousel-container {
-        height: 60vh;
+        height: 80vh;
     }
 
     .carousel-caption {
@@ -313,7 +314,7 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    left: -100px;
+    left: -80px;
     top: 40px;
     background-color: #1f1f1f;
     min-width: 180px;
@@ -611,7 +612,7 @@ body {
     width: 35px;
     height: 35px;
     background-color: #1f1f1f;
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     line-height: 35px;
     border-radius: 50%;
@@ -636,13 +637,17 @@ body {
     background-color: #0a0a0a;
     padding: 20px 0;
     text-align: center;
-    margin-top: 50px;
-    border-top: 1px solid #222;
+    /* تم استبدال margin-top القديم بـ margin-top: auto لضمان الالتصاق التام */
+    margin-top: auto;
+    border-top: 3px solid #c5a880;
+    width: 100%;
 }
 
 .footer-bottom p {
     color: #777777;
     font-size: 13px;
+    margin: 0;
+    /* لإزالة أي هوامش افتراضية للنص */
 }
 
 .footer-bottom a {

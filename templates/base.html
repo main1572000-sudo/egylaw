@@ -15,6 +15,7 @@
         <nav class="navbar">
             <div class="nav-logo">
                 <a href="{% url 'main' %}">egy<span>law</span></a>
+                <a href="{%url 'main'%}"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
 
             <div class="nav-search">
@@ -60,10 +61,15 @@
                 <div class="nav-dropdown">
                     <button class="dropdown-btn"><i class="fas fa-bars"></i></button>
                     <div class="dropdown-content">
+                        <a href="{% url 'main'%}"><i class="fas fa-file-alt"></i>الرئيسية</a>
                         <a href="{% url 'archive' %}"><i class="fas fa-gavel"></i>المقالات</a>
+                        <a href="{% url 'consult'%}"><i class="fas fa-headset"></i> طلب استشارة</a>
+                        <a href="{% url 'Privacy_Policy'%}"><i class="fas fa-file-alt"></i> Privacy Policy </a> 
+                        <a href="{% url 'Terms_And_Conditions'%}"><i class="fas fa-file-alt"></i> Terms&Conditions </a> 
+                        <a href="{% url 'About_Us'%}"><i class="fas fa-file-alt"></i> About Us </a> 
+                        <a href="{% url 'Contact_Us'%}"><i class="fas fa-file-alt"></i> Contact Us </a> 
                         {% comment %} <a href="#"><i class="fas fa-users"></i> فريق العمل</a> {% endcomment %}
                         {% comment %} <a href="https://wa.me/201234567890?text=مرحباً،%20أريد%20الاستفسار%20عن%20خدماتكم"> {% endcomment %}
-                        <a href="{%url 'consult'%}"><i class="fas fa-headset"></i> طلب استشارة</a>
                         {% comment %} <a href="#"><i class="fas fa-file-alt"></i>مطور الموقع</a> {% endcomment %}
                         
                     </div>
@@ -78,8 +84,8 @@
         {% block content %}{% endblock content %}
     </main>
 
-    <footer class="footer">
-        <div class="footer-container">
+    {% comment %} <footer class="footer"> {% endcomment %}
+        {% comment %} <div class="footer-container">
             
             <div class="footer-column about-box">
                 <h3 class="footer-logo">egy<span>law</span></h3>
@@ -91,8 +97,8 @@
             <div class="footer-column">
                 <h4 class="column-title">هـــام</h4>
                 <ul class="footer-links">
-                    {% comment %} <li><a href="#">الرئيسية</a></li> {% endcomment %}
-                    {% comment %} <li><a href="#">من نحن</a></li> {% endcomment %}
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">من نحن</a></li>
                     <li><a href="{% url 'Privacy_Policy'%}"><i class="fas fa-file-alt"></i> Privacy Policy </a></li>
                     <li><a href="{% url 'Terms_And_Conditions'%}"><i class="fas fa-file-alt"></i> Terms and Conditions </a></li>
                     <li><a href="{% url 'About_Us'%}"><i class="fas fa-file-alt"></i> About Us </a></li>
@@ -126,12 +132,12 @@
                 </div>
             </div>
 
-        </div>
+        </div> {% endcomment %}
 
         <div class="footer-bottom">
             <p>جميع الحقوق محفوظة &copy; 2026 <a href="{%url 'main'%}">EgyLaw</a>. صنع بكل حب.</p>
         </div>
-    </footer>
+    {% comment %} </footer> {% endcomment %}
     <script>
     const slides = document.querySelectorAll('.carousel-slide');
     let currentSlide = 0;

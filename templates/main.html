@@ -22,9 +22,9 @@
             <div class="carousel-caption">
                 <h2>حماية استثماراتكم وشركاتكم</h2>
                 <p>نقدم معلومات وحلول قانونية متكاملة للأفراد والشركات وصياغة العقود باحترافية.</p>
-                <a href="{% url 'archive' %}" class="carousel-btn">اكتشف خدماتنا</a>
+                {% comment %} <a href="{% url 'archive' %}" class="carousel-btn">اكتشف خدماتنا</a> {% endcomment %}
             </div>
-        </div>
+        </div> 
 
         <!-- الشريحة الثالثة -->
         <div class="carousel-slide">
@@ -40,4 +40,29 @@
 </div>
 <!-- نهاية الـ Carousel -->
 {% endblock main %}
-{% block content %}{% endblock content %}
+{% block content %}
+<div id="archive-news-section">
+    <h2>مضاف حديثاً</h2>
+
+    <div class="archive-container">
+        {% if page_obj %}
+            <ul class="archive-list">
+                {% for item in page_obj %}
+                    <li class="archive-item">
+                        <a href="{% url 'law' item.id item.slug %}" class="archive-link">
+                            <h3 class="archive-title">{{ item.header }}</h3>
+                            <span class="archive-read-more">عرض التفاصيل <i class="fas fa-chevron-left"></i></span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{%url 'archive'%}" class="carousel-btn">المزيد</a>
+        {% else %}
+            <div class="archive-no-results">
+                <i class="fas fa-folder-open"></i>
+                <p>لا توجد مقالات أو أخبار في الأرشيف حالياً.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

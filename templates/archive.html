@@ -28,6 +28,7 @@
                     {% if page_obj.has_next %}
                         <a href="?page={{ page_obj.next_page_number }}" class="page-link">التالي</a>
                     {% endif %}
+                <a href="{%url 'main'%}"><i class="fa-solid fa-right-from-bracket"></i></a>
                 </div>
             {% endif %}
 

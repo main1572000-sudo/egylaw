@@ -15,7 +15,8 @@ def ping(request):
     return HttpResponse('ping', content_type="text/plain")
 
 def main(request):
-    return render(request,'main.html')
+    queryset = Info.objects.all().order_by('-id')[:5]
+    return render(request,'main.html',context={'page_obj':queryset})
 
 def law(request,pk,slug):
     z = Info.objects.filter(pk = pk)
