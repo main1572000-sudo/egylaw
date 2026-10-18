@@ -204,7 +204,7 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # إعدادات مزود خدمة البريد (يمكنك تغييرها حسب المزود مثل SendGrid, Mailgun, Amazon SES, أو SMTP الخاص باستضافتك)
 EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = int(os.getenv('EMAIL_PORT'))  # البورت الشائع لـ TLS هو 587، أو 465 لـ SSL
+EMAIL_PORT = os.getenv('EMAIL_PORT')  # البورت الشائع لـ TLS هو 587، أو 465 لـ SSL
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
 # EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
 
