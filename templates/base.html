@@ -42,6 +42,7 @@
                             <a href="{%url 'users_list'%}"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
                             {%endif%}
                             <a href="{%url 'changepw'%}"><i class="fas fa-key"></i> تغيير كلمة المرور</a>
+                            <a href="{%url 'account_email'%}"><i class="fas fa-key"></i>خدمات الايميل</a>
                             
                             <!-- نموذج تسجيل الخروج ليعمل كـ POST -->
                             <form action="{%url 'logout'%}" method="POST" class="logout-form-tag">
@@ -54,7 +55,7 @@
                     </div>
                     
                 {% else %}
-                <a href="{%url 'login'%}" id="hello">دخـول</a>
+                <a href="{%url 'account_login'%}" id="hello">دخـول</a>
                 {% endif %}
                 <a href="{%url 'consult'%}" class="social-icon facebook" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
                 <a href="{%url 'consult'%}" class="social-icon whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>

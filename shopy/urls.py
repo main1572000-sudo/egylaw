@@ -22,4 +22,6 @@ urlpatterns = [
     path('dashboard/topics/new_topic/',views.Add_Topic,name='new_topic'),
     path('dashboard/topics/delete_topic/<int:topic_id>/',views.Delete_Topic,name='delete_topic'),
     path('dashboard/topics/edit_topic/<int:pk>/',views.Edit_Topic,name='edit_topic'),
+    # path('accounts/profile/',views.main,name='profile'),
+    
     ]

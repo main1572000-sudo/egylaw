@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة البريد الإلكتروني</title>
+    <!-- استدعاء Bootstrap 5 CSS (مع دعم RTL) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4">
+
+                    <!-- القائمة السريعة (اختيارية حسب رغبتك) -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+                        <h2 class="text-primary m-0">إدارة البريد الإلكتروني</h2>
+                        <div>
+                            <a href="{% url 'changepw' %}" class="btn btn-sm btn-outline-secondary">تغيير
+                                كلمة المرور</a>
+                            <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger">تسجيل الخروج</a>
+                        </div>
+                    </div>
+
+                    <!-- نموذج إدارة الإيميلات الحالية (اختيار، تفعيل رئيسي، إعادة إرسال، حذف) -->
+                    <form method="post" action="{% url 'account_email' %}">
+                        {% csrf_token %}
+
+                        {% if user.emailaddress_set.all %}
+                        <p class="text-muted mb-3">عناوين البريد الإلكتروني المرتبطة بحسابك:</p>
+
+                        <div class="list-group mb-3">
+                            {% for emailaddress in user.emailaddress_set.all %}
+                            <label class="list-group-item d-flex justify-content-between align-items-center py-3"
+                                style="cursor: pointer;">
+                                <div class="d-flex align-items-center gap-3">
+                                    <!-- زر الاختيار (Radio) الخاص بـ Allauth -->
+                                    <input type="radio" name="email" value="{{ emailaddress.email }}"
+                                        id="email_radio_{{ forloop.counter0 }}" class="form-check-input mt-0" {% if emailaddress.primary %}checked{% endif %}>
+                                    <span class="fw-semibold">{{ emailaddress.email }}</span>
+                                </div>
+
+                                <div class="d-flex gap-1">
+                                    {% if emailaddress.verified %}
+                                    <span class="badge bg-success">مؤكد</span>
+                                    {% else %}
+                                    <span class="badge bg-warning text-dark">غير مؤكد</span>
+                                    {% endif %}
+
+                                    {% if emailaddress.primary %}
+                                    <span class="badge bg-primary">رئيسي</span>
+                                    {% endif %}
+                                </div>
+                            </label>
+                            {% endfor %}
+                        </div>
+
+                        <!-- أزرار الإجراءات للبريد المحدد -->
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                            <button type="submit" name="action_primary" class="btn btn-outline-primary btn-sm">
+                                جعل الرئيسي (Make Primary)
+                            </button>
+                            <button type="submit" name="action_send" class="btn btn-outline-secondary btn-sm">
+                                إعادة إرسال التفعيل (Re-send)
+                            </button>
+                            <button type="submit" name="action_remove" class="btn btn-outline-danger btn-sm">
+                                حذف (Remove)
+                            </button>
+                        </div>
+                        {% endif %}
+                    </form>
+
+                    <hr class="my-4">
+
+                    <!-- نموذج إضافة بريد إلكتروني جديد -->
+                    <h4 class="mb-3 text-secondary">إضافة بريد إلكتروني جديد</h4>
+                    <form method="POST" action="{% url 'account_email' %}">
+                        {% csrf_token %}
+                        {% load crispy_forms_tags %}
+                        {{ form|crispy }}
+
+                        <button type="submit" name="action_add" class="btn btn-success w-100 mt-3">
+                            إضافة البريد
+                        </button>
+                    </form>
+
+                    <div class="mt-4 text-center">
+                        <a href="{% url 'account_login' %}" class="text-decoration-none">العودة لتسجيل الدخول</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- سكربتات Allauth الإلزامية لتفعيل نافذة التأكيد عند الحذف -->
+    <script src="/static/account/js/account.js"></script>
+    <script src="/static/account/js/onload.js"></script>
+    <script data-allauth-onload="allauth.account.forms.manageEmailForm" type="application/json">
+    {
+        "i18n": {"confirmDelete": "هل أنت متأكد من رغبتك في حذف عنوان البريد الإلكتروني المحدد؟"}
+    }
+    </script>
+</body>
+
+</html>

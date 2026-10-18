@@ -31,7 +31,7 @@
                         {% if x.is_active %}
                             <span class="badge active">مفعل</span>
                         {% else %}
-                            <span class="badge inactive">غير مفعل</span>
+                            <span class="badge inactive">محظور</span>
                         {% endif %}
                     </td>
                     <td>
@@ -47,14 +47,14 @@
                                 <form action="{%url 'deactivate_user' x.id%}" method="POST" style="display:inline;">
                                     {% csrf_token %}
                                     <button type="submit" class="btn-action deactivate" title="إلغاء تفعيل">
-                                        <i class="fa-solid fa-user-slash"></i> إلغاء تفعيل
+                                        <i class="fa-solid fa-user-slash"></i> إلغاء الجظر
                                     </button>
                                 </form>
                             {% else %}
                                 <form action="{%url 'activate_user' x.id%}" method="POST" style="display:inline;">
                                     {% csrf_token %}
                                     <button type="submit" class="btn-action activate" title="تفعيل">
-                                        <i class="fa-solid fa-user-check"></i> تفعيل
+                                        <i class="fa-solid fa-user-check"></i> حظر
                                     </button>
                                 </form>
                             {% endif %}

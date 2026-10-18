@@ -25,6 +25,7 @@ sitemaps = {
     'posts': PostSitemap,}
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('',include('shopy.urls')),
     path('auth/',include('log.urls')),
     path(

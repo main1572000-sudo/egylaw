@@ -57,6 +57,10 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'django.contrib.sites',     # مطلوب لتحديد نطاق موقعك
     'django.contrib.sitemaps',  # تطبيق الخرائط
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 # أضف هذا السطر أيضاً في أسفل الملف (رقم 1 يعبر عن الموقع الأول في قاعدة البيانات)
 SITE_ID = 1
@@ -70,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -84,9 +89,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
+]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -176,6 +187,36 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 # جرب إيقاف هذه الإعدادات مؤقتاً لمعرفة إن كانت هي السبب:
 # SECURE_SSL_REDIRECT = False
-LOGOUT_REDIRECT_URL = 'archive'
-LOGIN_REDIRECT_URL = 'archive'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
+
+# اجعل البريد الإلكتروني إجبارياً عند التسجيل
+ACCOUNT_EMAIL_REQUIRED = True
+
+# اجعل عملية تفعيل البريد الإلزامي لمنع تسجيل الدخول حتى يتم التفعيل
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+# (اختياري) لتسجيل دخول المستخدم تلقائياً فور ضغطه على رابط التفعيل في الإيميل
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
+# استخدام خادم بريد حقيقي عبر SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# إعدادات مزود خدمة البريد (يمكنك تغييرها حسب المزود مثل SendGrid, Mailgun, Amazon SES, أو SMTP الخاص باستضافتك)
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT'))  # البورت الشائع لـ TLS هو 587، أو 465 لـ SSL
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+# EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
+
+# بيانات الاعتماد (تُجلب من متغيرات البيئة للأمان)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+# البريد الافتراضي الذي تظهر الرسائل مرسلة منه
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+ACCOUNT_DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
+
+# إعدادات django-allauth الإضافية للإنتاج
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
