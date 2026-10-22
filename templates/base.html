@@ -41,11 +41,11 @@
                             {% if user.is_superuser %}
                             <a href="{%url 'users_list'%}"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
                             {%endif%}
-                            <a href="{%url 'changepw'%}"><i class="fas fa-key"></i> تغيير كلمة المرور</a>
+                            <a href="{%url 'account_change_password'%}"><i class="fas fa-key"></i> تغيير كلمة المرور</a>
                             <a href="{%url 'account_email'%}"><i class="fas fa-key"></i>خدمات الايميل</a>
                             
                             <!-- نموذج تسجيل الخروج ليعمل كـ POST -->
-                            <form action="{%url 'logout'%}" method="POST" class="logout-form-tag">
+                            <form action="{%url 'account_logout'%}" method="POST" class="logout-form-tag">
                                 {% csrf_token %}
                                 <button type="submit" class="profile-logout-btn">
                                     <i class="fas fa-sign-out-alt"></i> تسجيل الخروج

@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shopy',
-    'log',
+    # 'log',
+    'anymail',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_ckeditor_5',
@@ -201,20 +202,22 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 # استخدام خادم بريد حقيقي عبر SMTP
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 # إعدادات مزود خدمة البريد (يمكنك تغييرها حسب المزود مثل SendGrid, Mailgun, Amazon SES, أو SMTP الخاص باستضافتك)
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = os.getenv('EMAIL_PORT')  # البورت الشائع لـ TLS هو 587، أو 465 لـ SSL
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+# EMAIL_HOST = os.getenv('EMAIL_HOST')
+# EMAIL_PORT = os.getenv('EMAIL_PORT')  # البورت الشائع لـ TLS هو 587، أو 465 لـ SSL
+# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
 # EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
-
+ANYMAIL = {
+    "RESEND_API_KEY": os.getenv("RESEND_API_KEY"),
+}
 # بيانات الاعتماد (تُجلب من متغيرات البيئة للأمان)
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # البريد الافتراضي الذي تظهر الرسائل مرسلة منه
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
-ACCOUNT_DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
+# ACCOUNT_DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
 
 # إعدادات django-allauth الإضافية للإنتاج
 ACCOUNT_EMAIL_REQUIRED = True

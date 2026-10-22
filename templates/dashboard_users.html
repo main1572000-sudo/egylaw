@@ -11,7 +11,7 @@
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>اخر دخول</th>
                     <th>اسم المستخدم</th>
                     <th>الحالة</th>
                     <th>الإجراءات</th>
@@ -20,7 +20,7 @@
             <tbody>
                 {% for x in users %}
                 <tr>
-                    <td>{{ x.id }}</td>
+                    <td>{{ x.last_login }}</td>
                     <td>
                         <div class="user-info-cell">
                             <i class="fa-solid fa-user-circle"></i>
@@ -47,14 +47,14 @@
                                 <form action="{%url 'deactivate_user' x.id%}" method="POST" style="display:inline;">
                                     {% csrf_token %}
                                     <button type="submit" class="btn-action deactivate" title="إلغاء تفعيل">
-                                        <i class="fa-solid fa-user-slash"></i> إلغاء الجظر
+                                        <i class="fa-solid fa-user-slash"></i>  حظر
                                     </button>
                                 </form>
                             {% else %}
                                 <form action="{%url 'activate_user' x.id%}" method="POST" style="display:inline;">
                                     {% csrf_token %}
                                     <button type="submit" class="btn-action activate" title="تفعيل">
-                                        <i class="fa-solid fa-user-check"></i> حظر
+                                        <i class="fa-solid fa-user-check"></i> الغاء الحظر
                                     </button>
                                 </form>
                             {% endif %}

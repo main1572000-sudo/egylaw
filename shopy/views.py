@@ -155,4 +155,14 @@ def Edit_Topic(request, pk):
         'is_edit': True
     }
     return render(request, 'edit_topic.html', context)
-        
+
+from django.core.mail import send_mail
+
+def send_verification_email(user_email, activation_link):
+    send_mail(
+        subject="تفعيل حسابك",
+        message=f"مرحباً، انقر على الرابط التالي لتفعيل حسابك: {activation_link}",
+        from_email=None,  # سيستخدم تلقائياً قيمة DEFAULT_FROM_EMAIL
+        recipient_list=[user_email],
+        fail_silently=False,
+    )
