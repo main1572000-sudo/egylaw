@@ -11,7 +11,7 @@
                     <li class="archive-item">
                         <a href="{% url 'law' item.id item.slug %}" class="archive-link">
                             <h3 class="archive-title">{{ item.header }}</h3>
-                            <span class="archive-read-more">عرض التفاصيل <i class="fas fa-chevron-left"></i></span>
+                            <span class="archive-read-more">{{item.author.username}}<i class="fas fa-chevron-left"></i></span>
                         </a>
                     </li>
                 {% endfor %}

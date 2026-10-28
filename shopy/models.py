@@ -1,7 +1,10 @@
 from django.db import models
+from django.contrib.auth import get_user_model 
 from django_ckeditor_5.fields import CKEditor5Field
 from django.urls import reverse # 1. استيراد دالة reverse الهامة جداً
 # Create your models here.
+User = get_user_model()
+
 class Catagory(models.Model):
     name = models.CharField('التصنيف',max_length=50)
     
@@ -10,6 +13,7 @@ class Catagory(models.Model):
 #--------------------------------------------------------
 #--------------------------------------------------------
 class Info(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
     header = models.CharField('العنوان',max_length=50)
     content = CKEditor5Field('المحتوى', config_name='extends')
     catagory = models.ForeignKey(Catagory,verbose_name='التصنيف', on_delete=models.CASCADE)

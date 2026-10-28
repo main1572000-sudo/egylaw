@@ -7,6 +7,24 @@
         <div id="forpages">
             <h1>{{x.header}}</h1>
             <div id="lawpage">{{x.content|safe}}</div>
+
+            <div class="article-card-footer">
+                <!-- زر التعديل -->
+                <form action="{%url 'edit_topic' x.id %}" method="PUT" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="action-btn edit-btn" title="تعديل المقال">
+                        <i class="fa-solid fa-pen-to-square"></i> تعديل
+                    </button>
+                </form>
+                <!-- زر الحذف (يجب أن يكون POST للأمان) -->
+                <form action="{%url 'delete_topic' x.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="action-btn delete-btn" title="حذف المقال" onclick="return confirm('هل أنت متأكد من حذف هذا المقال؟');">
+                        <i class="fa-solid fa-trash-can"></i> حذف
+                    </button>
+                </form>
+            </div>
+            
         </div>
     {% endfor %}
 {% endblock main %}

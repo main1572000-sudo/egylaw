@@ -190,7 +190,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # SECURE_SSL_REDIRECT = False
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = 'login'
+LOGIN_URL = 'account_login'
 
 # اجعل البريد الإلكتروني إجبارياً عند التسجيل
 ACCOUNT_EMAIL_REQUIRED = True

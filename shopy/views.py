@@ -1,11 +1,11 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Info
-from django.http import HttpResponse
+from django.http import HttpResponse , JsonResponse , HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import user_passes_test , login_required
+from django.contrib.auth.models import User , Permission
+from django.contrib.auth.decorators import permission_required, user_passes_test , login_required
 from .forms import InfoForm
 # دالة تختصر الشرطين: هل مسجل دخول + هل هو مشرف/طاقم؟
 admin_required = user_passes_test(lambda u: u.is_authenticated and u.is_staff)
@@ -71,7 +71,10 @@ def dashboard_home(request):
 def users_list(request):
     # 1. جلب كل المستخدمين من قاعدة البيانات
     all_users = User.objects.all().order_by('-id')
-    
+    perms=[]
+    for x in all_users:
+        if x.has_perm('shopy.add_info'):
+            perms.append(x.username)
     # 2. إنشاء كائن التقسيم وتحديد 20 مستخدمًا في كل صفحة
     paginator = Paginator(all_users, 20)
     
@@ -83,6 +86,7 @@ def users_list(request):
         'users': page_obj,          # قائمة الـ 20 مستخدمًا الخاصة بهذه الصفحة
         'page': page_obj.number,    # رقم الصفحة الحالية
         'has_next': page_obj.has_next(), # هل توجد صفحة تالية؟ (لتفعيل زر التالي)
+        'perms':perms
     }
     return render(request, 'dashboard_users.html', context)
 @admin_required
@@ -114,47 +118,61 @@ def Topics(request):
     page_obj = paginator.get_page(page_number)
     return render(request,'topics.html',{'page_obj':page_obj})
 
-@admin_required
+@login_required
+@permission_required('shopy.add_info')
 def Add_Topic(request):
-    if request.method == 'POST':
-        form = InfoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('topics') # اسم مسار صفحة عرض المقالات
+    user_has_perm = request.user.has_perm('shopy.add_info')
+    if user_has_perm:
+        if request.method == 'POST':
+            form = InfoForm(request.POST)
+            if form.is_valid():
+                article = form.save(commit=False)
+                article.author = request.user
+                article.save()
+                return redirect('archive') # اسم مسار صفحة عرض المقالات
+        else:
+            form = InfoForm()
+            
+        context = {
+            'form': form
+        }
+        return render(request, 'new_topic.html', context)
     else:
-        form = InfoForm()
-        
-    context = {
-        'form': form
-    }
-    return render(request, 'new_topic.html', context)
-
-@admin_required
+        return HttpResponseForbidden('لا تملك الصلاحية')
+    
+@login_required
+@permission_required('shopy.add_info')
 def Delete_Topic(request,topic_id):
     x = Info.objects.get(pk = topic_id)
-    x.delete()
-    return redirect('topics')
+    if request.user == x.author or request.user.username == 'admin':
+        x.delete()
+        return redirect('archive')
+    else:
+        return HttpResponseForbidden('لست صاحب المقال')
 
-@admin_required
+@login_required
+@permission_required('shopy.add_info')
 def Edit_Topic(request, pk):
     # جلب المقال المراد تعديله عبر الـ pk، أو إظهار صفحة 404 إذا لم يتم العثور عليه
     topic = get_object_or_404(Info, pk=pk)
+    if request.user == topic.author or request.user.username == 'admin':
+        if request.method == 'PUT':
+            # ربط الـ form بالبيانات الجديدة ومع بيانات المقال الحالي (instance=topic)
+            form = InfoForm(request.PUT, instance=topic)
+            if form.is_valid():
+                form.save()
+                return redirect('archive')  # العودة لصفحة عرض المقالات بعد الحفظ
+        else:
+            # ملء الحقول تلقائياً ببيانات المقال القديمة لتعديلها
+            form = InfoForm(instance=topic)
 
-    if request.method == 'PUT':
-        # ربط الـ form بالبيانات الجديدة ومع بيانات المقال الحالي (instance=topic)
-        form = InfoForm(request.PUT, instance=topic)
-        if form.is_valid():
-            form.save()
-            return redirect('topics')  # العودة لصفحة عرض المقالات بعد الحفظ
+        context = {
+            'form': form,
+            'is_edit': True
+        }
+        return render(request, 'edit_topic.html', context)
     else:
-        # ملء الحقول تلقائياً ببيانات المقال القديمة لتعديلها
-        form = InfoForm(instance=topic)
-
-    context = {
-        'form': form,
-        'is_edit': True
-    }
-    return render(request, 'edit_topic.html', context)
+        return HttpResponseForbidden('لست صاحب المقال')
 
 from django.core.mail import send_mail
 
@@ -166,3 +184,24 @@ def send_verification_email(user_email, activation_link):
         recipient_list=[user_email],
         fail_silently=False,
     )
+
+@login_required
+def toggle_topic_permission(request,pk):
+    # فرضنا أن اسم الصلاحية المراد إعطاؤها هو 'view_topics'
+    # يمكنك استبدالها بالصلاحية الخاصة بك
+    if request.method == 'POST':
+        try:
+            permission = Permission.objects.get(codename='add_info')
+            user = User.objects.get(pk=pk)
+            
+        
+        # التحقق مما إذا كان المستخدم يملك الصلاحية مسبقاً
+            if user.has_perm('shopy.add_info'): # استبدل app_name باسم التطبيق لديك
+                user.user_permissions.remove(permission)
+                return HttpResponse('تم حذف اذن انشاء المقالات من المستخدم ')
+            else:
+                user.user_permissions.add(permission)
+                return HttpResponse('تم منح اذن انشاء المقالات الى المستخدم')
+            
+        except Permission.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'الصلاحية غير موجودة في النظام'}, status=400)
